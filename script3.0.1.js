@@ -187,6 +187,47 @@ function teclaPresionada(event){//        -------- CON ESTA FUNCION DETECTO QUE 
     }
     return tecla;
 }
+function botonPresionada(letra){//        -------- CON ESTA FUNCION DETECTO QUE TECLA PRESIONO EL USUARIO Y CALCULO LOS INTENTOS FALLIDOS/EXITOSOS --------
+    var posicionX = 100;
+    var posicionY = 500;
+    var detectar;
+    var boton = letra;
+    var acierto;
+    var aciertosMax = letrasSinRepetir(palabraElegida);
+    detectar = detectarLetra(boton);
+    // VALORES DE DETECTAR
+    if(detectar == 2){
+        letrasGuardadas.push(boton);
+        acierto = acertarLetra(boton);
+        if(acierto == 0){
+            intentosfallados++;
+            if(intentosfallados <= 5){
+                diseñarHorca(intentosfallados);
+                dibujarLetra(boton);
+                if(intentosfallados == 5){
+                    pincel.font = "55px ComicSans"
+                    pincel.strokeStyle = "white";
+                    pincel.strokeText("FIN DEL JUEGO.",posicionX+390,posicionY +290);
+                    posicionX = posicionX+50;
+                }
+            }
+        }else{
+            dibujarletraAcertada(boton);
+            intentosacertados++;
+            if(intentosacertados == aciertosMax){
+                pincel.font = "45px ComicSans"
+                    pincel.strokeStyle = "darkgreen";
+                    pincel.strokeText("GANASTE!!! FELICIDADES",posicionX+200,posicionY +280);
+                    posicionX = posicionX+50;
+            }
+        }
+        
+    }else if(detectar == 5){
+        alert("Usted ya ingreso esa letra");
+    }
+    return boton;
+}
+
 function dibujarLetra(tecla){   //        -------- CON ESTA FUNCION DIBUJO LA LETRA INGRESADA ERRONEAMENTE --------
         pincel.font = "45px TimesNewRoman"
         pincel.strokeStyle = "Darkred";
@@ -291,56 +332,7 @@ function volverInicio (){
     intentosacertados = 0;
     location.reload();
 }
-// $("#hiddenInput").keyup(function(e) {
-//     if (e.which !== 0) {
-//        var character = String.fromCharCode(e.which);
-//        doSomethingWith(character);
-//     }
-// });
-
-var canvas = document.getElementById('e'),
-    ctx = canvas.getContext('2d'),
-    font = '14px sans-serif',
-    hasInput = false;
-
-canvas.onclick = function(e) {
-    if (hasInput) return;
-    addInput(e.clientX, e.clientY);
-}
-
-//Function to dynamically add an input box: 
-function addInput(x, y) {
-
-    var input = document.createElement('input');
-
-    input.type = 'text';
-    input.style.position = 'fixed';
-    input.style.left = (x - 4) + 'px';
-    input.style.top = (y - 4) + 'px';
-
-    input.onkeydown = handleEnter;
-
-    document.body.appendChild(input);
-
-    input.focus();
-
-    hasInput = true;
-}
-
-//Key handler for input box:
-function handleEnter(e) {
-    var keyCode = e.keyCode;
-    if (keyCode === 13) {
-        drawText(this.value, parseInt(this.style.left, 10), parseInt(this.style.top, 10));
-        document.body.removeChild(this);
-        hasInput = false;
-    }
-}
-
-//Draw the text onto canvas:
-function drawText(txt, x, y) {
-    ctx.textBaseline = 'top';
-    ctx.textAlign = 'left';
-    ctx.font = font;
-    ctx.fillText(txt, x - 4, y - 4);
+function detectarBoton(letra){
+    var botonPress = letra;
+    botonPresionada(botonPress);
 }

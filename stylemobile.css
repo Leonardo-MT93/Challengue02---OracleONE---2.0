@@ -1,4 +1,7 @@
-
+.botones_game{
+    display: none;
+    visibility: hidden;
+}
 
 @media (max-width: 768px) {
     body{
@@ -88,7 +91,7 @@
     }
     .footer{
         background-color: blueviolet;
-        height: 10vh;
+        height: 7vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -97,7 +100,17 @@
         visibility: hidden;
         display: none;
     }
-    #myCanvas {
-        background: lightsalmon;
+    .botones_game{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 15vh;
+    }
+    .button_game{
+        width: 9%;
+        height: 22px;
+        margin: 0 3px; 
     }
     }
