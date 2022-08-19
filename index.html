@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado - V3.0</title>
+    <!-- <link rel="stylesheet" href="style3.0.1.css"> -->
+    <link rel="stylesheet" href="stylemobile.css">
+</head>
+  <header>
+    
+  </header>
+  <body class="app" id="iniciodeverdad">
+    <div class="menu_principal">
+      <div class="titulos">
+        <h1 class="titulo_principal">Juego del Ahorcado</h1>
+      <h2 class="titulo_secundario">CHALLENGUE 02 - ORACLE ONE</p>
+      </div>
+      <div class="botones_principales">
+        <a href="#canvas" class="boton_inicio">
+          <button type="button" id="inicio" onclick="crearTablero()" class="button-64" role="button">INICIAR JUEGO</button>
+        </a>
+        <div class="form__group">
+              <input type="text" class="form__input" required="" name="nuevodato" id="nuevodato" placeholder="Escriba una nueva palabra en Mayúscula" />                
+              <button type="button" id="agregar" onclick="agregarPalabra()" class="button-64" role="button">AGREGAR PALABRA</button>
+        </div>
+      </div>
+    </div>
+    <div class="div_canvas" id="canvas">
+      <h2 class="titulo_secundario">Juego del Ahorcado</h2>
+      <span>**Recuerde ingresar solo letras mayúsculas**</span>
+      <canvas id="e" width="1200" height="800" class="canvas_mobile" id="canvas_mobile"></canvas>
+      <input id="hiddenInput" type="text" name="hiddenInput" autofocus class="hiddeninput" />
+      <div class="botones_secundarios">
+        <a href="#canvas">
+          <button class="button-64" onclick="reiniciar()">Reiniciar Juego</button>
+        </a>
+        <a href="#iniciodeverdad">
+          <button class="button-64" onclick="volverInicio()">Volver al inicio</button>
+        </a>
+      </div>
+      
+    </div>
+    </body>
+    <footer class="footer">©2022. Leonardo Tolaba - DEV</footer>
+    <script src="script3.0.1.js"></script>
+</html>
+
+
+
+
