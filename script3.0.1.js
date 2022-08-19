@@ -304,7 +304,6 @@ var canvas = document.getElementById('e'),
     hasInput = false;
 
 canvas.onclick = function(e) {
-    alert("Disfruta de este juego! Por favor me costo mucho hacerlo ;(");
     if (hasInput) return;
     addInput(e.clientX, e.clientY);
 }
