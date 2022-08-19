@@ -291,12 +291,12 @@ function volverInicio (){
     intentosacertados = 0;
     location.reload();
 }
-$("#hiddenInput").keyup(function(e) {
-    if (e.which !== 0) {
-       var character = String.fromCharCode(e.which);
-       doSomethingWith(character);
-    }
-});
+// $("#hiddenInput").keyup(function(e) {
+//     if (e.which !== 0) {
+//        var character = String.fromCharCode(e.which);
+//        doSomethingWith(character);
+//     }
+// });
 
 var canvas = document.getElementById('myCanvas'),
     ctx = canvas.getContext('2d'),
