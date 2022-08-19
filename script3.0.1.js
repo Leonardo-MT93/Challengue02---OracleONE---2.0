@@ -298,12 +298,13 @@ function volverInicio (){
 //     }
 // });
 
-var canvas = document.getElementById('myCanvas'),
+var canvas = document.getElementById('e'),
     ctx = canvas.getContext('2d'),
     font = '14px sans-serif',
     hasInput = false;
 
 canvas.onclick = function(e) {
+    alert("Disfruta de este juego! Por favor me costo mucho hacerlo ;(");
     if (hasInput) return;
     addInput(e.clientX, e.clientY);
 }
