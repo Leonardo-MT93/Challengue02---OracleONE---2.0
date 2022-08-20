@@ -5,12 +5,16 @@
 
 @media (max-width: 768px) {
     body{
+        font-family: 'DynaPuff', cursive;
+        font-weight: bold;
         overflow-x: hidden;
     }
     .button-64{
         width: 150px;
         height: 50px;
         font-size: 15px;
+        font-family: 'DynaPuff', cursive;
+        font-weight: bold;
     }
     .boton_inicio{
         display: flex;
@@ -20,7 +24,7 @@
         height: 40vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
     .titulo_principal{
         font-size: 40px;
@@ -38,6 +42,7 @@
     span{
         color: red;
         font-size: 16px;
+        text-align: center;
     }
     .botones_principales{
         width: 100%;
@@ -110,6 +115,8 @@
         height: 15vh;
     }
     .button_game{
+        font-family: 'DynaPuff', cursive;
+        font-weight: bold;
         width: 9%;
         height: 22px;
         margin: 0 3px; 
