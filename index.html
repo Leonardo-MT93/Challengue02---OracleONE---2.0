@@ -33,8 +33,10 @@
       </div>
     </div>
     <div class="div_canvas" id="canvas">
-      <h2 class="titulo_secundario">Juego del Ahorcado</h2>
-      <span>**Recuerde ingresar solo letras mayúsculas**</span>
+      <div class="titulos_secundarios">
+        <h2 class="titulo_secundario">Juego del Ahorcado</h2>
+        <span>**Recordá que solo tenés 5 intentos**</span>
+      </div>
       <canvas id="e" width="1200" height="800" class="canvas_mobile" id="canvas_mobile"></canvas>
       <div class="botones_game">
         <button class="button_game" onclick="detectarBoton('A')">A</button>
@@ -63,8 +65,7 @@
         <button class="button_game" onclick="detectarBoton('X')">X</button>
         <button class="button_game" onclick="detectarBoton('Y')">Y</button>
       </div>
-      <input id="hiddenInput" type="text" name="hiddenInput" autofocus class="hiddeninput" />
-      <div class="botones_secundarios">
+        <div class="botones_secundarios">
         <a href="#canvas">
           <button class="button-64" onclick="reiniciar()">Reiniciar Juego</button>
         </a>
