@@ -60,9 +60,12 @@
     }
     .div_canvas{
         width: 100%;
+        background-image: url(imagenGame.jpg);
+        background-size: cover;
+        background-position: center;
         display: flex;
         flex-direction: column;
-        height: 90vh;
+        height: 93vh;
         justify-content: space-around;
         align-items: center;
     }
@@ -74,8 +77,10 @@
         height: 250px;
     }
     .menu_principal{
+        background-image: url(imagenGame.jpg);
+        background-size: cover;
+        background-position: center;
         width: 100%;
-        background-color: aquamarine;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -88,14 +93,21 @@
         width: 100%;
         align-items: center;
         justify-content: space-evenly;
-        height: 150px;
+        height: 25vh;
     }
     .form__input{
         width: 85%;
         height: 35px;
+        background: inherit;
+        background-color: transparent;
+        border-radius: 10px;
+        border-color: #56170e;
+        color: #130401;
+        font-weight: bolder;
+        text-align: center;
     }
     .footer{
-        background-color: blueviolet;
+        background-color: #56170e;
         height: 7vh;
         display: flex;
         align-items: center;

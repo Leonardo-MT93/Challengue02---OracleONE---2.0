@@ -34,7 +34,7 @@ function crearTablero(){//        -------- ESTA FUNCION INICIALIZA NUESTRO TABLE
     iniciarjuego = 1;
      pantalla = document.querySelector("canvas");
      pincel = pantalla.getContext("2d");
-    pincel.fillStyle = "cyan";
+    pincel.fillStyle = "transparent";
     pincel.fillRect(0,50,1200,800);
     mostrarGuiones();
     subtitulo();

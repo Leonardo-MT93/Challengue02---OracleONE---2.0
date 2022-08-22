@@ -1,0 +1,25 @@
+{"game": 
+  [
+    {"position": "0",
+    "words": "test",
+    "description": "Palabras del proyecto",
+    "main": "scriptGame.js"
+    },
+    {"position": "1",
+    "words": "testamento",
+    "description": "Palabras del proyecto",
+    "main": "scriptGame.js"
+    },
+    {"position": "2",
+    "words": "tester",
+    "description": "Palabras del proyecto",
+    "main": "scriptGame.js"
+    },
+    {"position": "3",
+    "words": "testeando",
+    "description": "Palabras del proyecto",
+    "main": "scriptGame.js"
+    }
+  ]
+}
+
