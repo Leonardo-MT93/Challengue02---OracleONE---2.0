@@ -12,7 +12,7 @@ var y;
 var radio = 25;
 var pantalla;
 var pincel;
-var palabras = ["IMSOMNIO", "ESQUIMAL", "ANDAMIO", "MECANICA", "FELICIDONIA"];
+var palabras = ["IMSOMNIO", "ESQUIMAL", "ANDAMIO", "MECANICA", "FELICIDONIA", "POSTER", "ANIME", "REGALO", "POSTERGACION", "PALEONTOLOGO", "FOBIA", "CREACION"];
 var palabraRandom;
 var palabraElegida;
 var intentosfallados = 0;
@@ -34,7 +34,8 @@ function crearTablero(){//        -------- ESTA FUNCION INICIALIZA NUESTRO TABLE
     iniciarjuego = 1;
      pantalla = document.querySelector("canvas");
      pincel = pantalla.getContext("2d");
-    pincel.fillStyle = "transparent";
+    pincel.fillStyle = "orange";
+    // pincel.globalAlpha = 0.5; TRANSPARENCIA ***COrregir el fondo***
     pincel.fillRect(0,50,1200,800);
     mostrarGuiones();
     subtitulo();
@@ -50,7 +51,7 @@ function mostrarGuiones(){//        -------- CON ESTA FUNCION LEO LA PALABRA A A
     if(nuevaPalabra == null){
         palabraRandom = Math.floor(Math.random()*palabras.length);
         palabraElegida = palabras[palabraRandom];
-        cantidad = palabraElegida.length;  
+        cantidad = palabraElegida.length; 
         dibujarGuion(cantidad);
     }
     else{
@@ -70,7 +71,7 @@ function letrasSinRepetir(palabraElegida){//        -------- CON ESTA FUNCION ME
     return valores.length;
 }
 function dibujarGuion(cantidad){//        -------- CON ESTA FUNCION PERSONALIZO LOS COLORES Y EL POSICIONAMIENTO DE LOS GUIONES PREVIAMENTE CALCULADOS --------
-    var x = 75;
+    var x = 45;
     var y = 700;
     for(var z=0; z<cantidad; z++){ 
         pincel.beginPath();
@@ -205,19 +206,21 @@ function botonPresionada(letra){//        -------- CON ESTA FUNCION DETECTO QUE 
                 diseñarHorca(intentosfallados);
                 dibujarLetra(boton);
                 if(intentosfallados == 5){
-                    pincel.font = "55px ComicSans"
-                    pincel.strokeStyle = "white";
-                    pincel.strokeText("FIN DEL JUEGO.",posicionX+390,posicionY +290);
+                    pincel.font = "85px DynaPuff"
+                    pincel.strokeStyle = "red";
+                    // pincel.strokeText("PERDISTE - FIN DEL JUEGO.",posicionX+390,posicionY +290);
+                    pincel.strokeText("PERDISTE - FIN DEL JUEGO.",posicionX-50,posicionY +300);
                     posicionX = posicionX+50;
+                    detectar = 0;
                 }
             }
         }else{
             dibujarletraAcertada(boton);
             intentosacertados++;
             if(intentosacertados == aciertosMax){
-                pincel.font = "45px ComicSans"
+                pincel.font = "bold 85px DynaPuff"
                     pincel.strokeStyle = "darkgreen";
-                    pincel.strokeText("GANASTE!!! FELICIDADES",posicionX+200,posicionY +280);
+                    pincel.strokeText("GANASTE!!! FELICIDADES!!",posicionX-50,posicionY +300);
                     posicionX = posicionX+50;
             }
         }
@@ -229,10 +232,10 @@ function botonPresionada(letra){//        -------- CON ESTA FUNCION DETECTO QUE 
 }
 
 function dibujarLetra(tecla){   //        -------- CON ESTA FUNCION DIBUJO LA LETRA INGRESADA ERRONEAMENTE --------
-        pincel.font = "45px TimesNewRoman"
+        pincel.font = " 50px Georgia"
         pincel.strokeStyle = "Darkred";
         pincel.strokeText(tecla,posicionX+525,posicionY-300);
-        posicionX = posicionX+50;
+        posicionX = posicionX+60;
 }
 function detectarLetra(tecla){//        -------- ESTA FUNCION SIRVE DE VALIDACION PARA QUE EL USUARIO SOLO PUEDA JUGAR SI COLOCO LETRAS MAYUSCULAS --------
     var detectado;
@@ -265,9 +268,9 @@ function subtitulo(){//        -------- ESTA FUNCION ME SIRVE PARA COLOCAR EL SU
     var posicionX = 100;
     var posicionY = 500;
     var posicionTitulo = 100;
-    pincel.font = "55px TimesNewRoman"
+    pincel.font = "bolder 65px DynaPuff"
     pincel.strokeStyle = "black";
-    pincel.strokeText("Letras ingresadas:",posicionTitulo+545,posicionY-390);
+    pincel.strokeText("Letras ingresadas:",posicionTitulo+450,posicionY-370);
     posicionTitulo = posicionTitulo +50;
 }
 function acertarLetra(tecla){//        -------- CON ESTA FUNCION CALCULO SI LA LETRA INGRESADA PERTENECE A NUESTRA PALABRA SECRETA --------
@@ -281,15 +284,20 @@ function acertarLetra(tecla){//        -------- CON ESTA FUNCION CALCULO SI LA L
     return 0;   
 }
 function dibujarletraAcertada(tecla){//        -------- CON ESTA FUNCION DIBUJO LA LETRA SOBRE EL GUION LUEGO DE VALIDAR QUE ESTA CORRECTA --------
-    var x = 75;
+    var x = 45;
     var y = 700;
     var letraaAcertada = tecla;
     for(var z=0; z< palabraElegida.length; z++){
         if(letraaAcertada == palabraElegida[z]){
-            pincel.font = "70px Arial"
-            pincel.strokeStyle = "red";
-            pincel.strokeText(palabraElegida[z],x+20,y - 10);
-            
+            if(palabraElegida[z] == 'I'){
+            pincel.font = "70px DynaPuff"
+            pincel.strokeStyle = "Black";
+            pincel.strokeText(palabraElegida[z],x+35,y - 10);
+            }else{
+                pincel.font = "70px DynaPuff"
+                pincel.strokeStyle = "Black";
+                pincel.strokeText(palabraElegida[z],x+20,y - 10);
+            } 
         } 
         x = x + 70; 
     }
@@ -311,9 +319,6 @@ function validarnuevaPalabra(){//        -------- CON ESTA FUNCION VALIDO LA NUE
             document.getElementById("nuevodato").value = "";
         }
     }
-
-    
-    
 }
 function agregarPalabra(){ //        -------- CON ESTA FUNCION EL USUARIO PUEDE AGREGAR LA PALABRA QUE DESEE Y COMENZAR EL JUEGO --------
     nuevaPalabra = document.getElementById("nuevodato").value;
@@ -325,6 +330,9 @@ function reiniciar (){
     letrasGuardadas = [];
     intentosfallados = 0;
     intentosacertados = 0;
+    posicionX = 100;
+    posicionY = 500;
+    alert("juego reinciado");
 }
 function volverInicio (){
     letrasGuardadas = [];
