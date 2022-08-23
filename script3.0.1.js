@@ -12,7 +12,7 @@ var y;
 var radio = 25;
 var pantalla;
 var pincel;
-var palabras = ["IMSOMNIO", "ESQUIMAL", "ANDAMIO", "MECANICA", "FELICIDONIA", "POSTER", "ANIME", "REGALO", "POSTERGACION", "PALEONTOLOGO", "FOBIA", "CREACION"];
+var palabras = ["IMSOMNIO", "ESQUIMAL", "ANDAMIO", "MECANICA", "FELICIDONIA", "POSTER", "ANIME", "REGALO", "COMANDANTE", "PALEONTOLOGO", "FOBIA", "CREACION"];
 var palabraRandom;
 var palabraElegida;
 var intentosfallados = 0;
@@ -49,6 +49,7 @@ function disenharCirculo(x,y,radio){//        -------- CON ESTA FUNCION DISEÑO 
     pincel.stroke();
 }
 function mostrarGuiones(){//        -------- CON ESTA FUNCION LEO LA PALABRA A ADIVINAR Y EN BASE A LA CANTIDAD DE LETRAS, CREO GUIONES --------
+    alert(nuevaPalabra);
     if(nuevaPalabra == null){
         palabraRandom = Math.floor(Math.random()*palabras.length);
         palabraElegida = palabras[palabraRandom];
