@@ -25,6 +25,7 @@ var cantidad;
 var letrasminuscula = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
 var caracterEspecial = ['!','|','°','?','¡','¿','$','%','&','/','(',')','-','.',',','{','}','[',']'];
 var nuevaPalabra;
+var juegoperdido = 0;
 var iniciarjuego = 0;
 var letrasGuardadas = [];
 if(iniciarjuego == 0){//        -------- CON ESTA CONDICIONAL NOS ASEGURAMOS DE PRESIONAR UNA SOLA VEZ EL INICIO DEL JUEGO --------
@@ -162,20 +163,21 @@ function teclaPresionada(event){//        -------- CON ESTA FUNCION DETECTO QUE 
                 diseñarHorca(intentosfallados);
                 dibujarLetra(tecla);
                 if(intentosfallados == 5){
-                    pincel.font = "55px ComicSans"
-                    pincel.strokeStyle = "white";
-                    pincel.strokeText("FIN DEL JUEGO.",posicionX+390,posicionY +290);
+                    pincel.font = "85px DynaPuff"
+                    pincel.strokeStyle = "red";
+                    pincel.strokeText("PERDISTE - FIN DEL JUEGO.",posicionX-50,posicionY +300);
                     posicionX = posicionX+50;
+                    juegoperdido = 1;
                 }
             }
         }else{
             dibujarletraAcertada(tecla);
             intentosacertados++;
-            if(intentosacertados == aciertosMax){
-                pincel.font = "45px ComicSans"
-                    pincel.strokeStyle = "darkgreen";
-                    pincel.strokeText("GANASTE!!! FELICIDADES",posicionX+200,posicionY +280);
-                    posicionX = posicionX+50;
+            if(intentosacertados == aciertosMax && juegoperdido == 0){
+                pincel.font = "bold 85px DynaPuff"
+                pincel.strokeStyle = "darkgreen";
+                pincel.strokeText("GANASTE!!! FELICIDADES!!",posicionX-50,posicionY +300);
+                posicionX = posicionX+50;
             }
         }
         
@@ -208,20 +210,19 @@ function botonPresionada(letra){//        -------- CON ESTA FUNCION DETECTO QUE 
                 if(intentosfallados == 5){
                     pincel.font = "85px DynaPuff"
                     pincel.strokeStyle = "red";
-                    // pincel.strokeText("PERDISTE - FIN DEL JUEGO.",posicionX+390,posicionY +290);
                     pincel.strokeText("PERDISTE - FIN DEL JUEGO.",posicionX-50,posicionY +300);
                     posicionX = posicionX+50;
-                    detectar = 0;
+                    juegoperdido = 1;
                 }
             }
         }else{
             dibujarletraAcertada(boton);
             intentosacertados++;
-            if(intentosacertados == aciertosMax){
+            if(intentosacertados == aciertosMax && juegoperdido == 0){
                 pincel.font = "bold 85px DynaPuff"
-                    pincel.strokeStyle = "darkgreen";
-                    pincel.strokeText("GANASTE!!! FELICIDADES!!",posicionX-50,posicionY +300);
-                    posicionX = posicionX+50;
+                pincel.strokeStyle = "darkgreen";
+                pincel.strokeText("GANASTE!!! FELICIDADES!!",posicionX-50,posicionY +300);
+                posicionX = posicionX+50;
             }
         }
         
@@ -332,7 +333,6 @@ function reiniciar (){
     intentosacertados = 0;
     posicionX = 100;
     posicionY = 500;
-    alert("juego reinciado");
 }
 function volverInicio (){
     letrasGuardadas = [];
