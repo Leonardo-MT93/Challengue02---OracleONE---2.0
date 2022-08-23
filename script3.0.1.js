@@ -326,17 +326,12 @@ function validarnuevaPalabra(){//        -------- CON ESTA FUNCION VALIDO LA NUE
 }
 function agregarPalabra(){ //        -------- CON ESTA FUNCION EL USUARIO PUEDE AGREGAR LA PALABRA QUE DESEE Y COMENZAR EL JUEGO --------
     palabraAgregada = document.getElementById("nuevodato").value;
-    palabraAgregada = palabraAgregada.toUpperCase();
-    if(isLetter(palabraAgregada)){
-        nuevaPalabra = palabraAgregada;
-    }else{
-        alert("La palabra ingresada solo debe contener letras");
-        nuevaPalabra = null;
-    } 
+    nuevaPalabra = palabraAgregada.toUpperCase();
+    alert(nuevaPalabra)
     document.getElementById("nuevodato").value = "";
 }
 function isLetter(str) {
-  return str.length === 1 && str.match(/[A-Z]/i);
+  return str.length != 1 && str.match(/[a-z]/i);
 }
 function reiniciar (){
     crearTablero();
