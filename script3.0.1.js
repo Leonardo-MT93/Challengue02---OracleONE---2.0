@@ -28,6 +28,7 @@ var nuevaPalabra;
 var juegoperdido = 0;
 var iniciarjuego = 0;
 var letrasGuardadas = [];
+var palabraAgregada;
 if(iniciarjuego == 0){//        -------- CON ESTA CONDICIONAL NOS ASEGURAMOS DE PRESIONAR UNA SOLA VEZ EL INICIO DEL JUEGO --------
     document.addEventListener("keyup", validarnuevaPalabra);
 }
@@ -49,7 +50,8 @@ function disenharCirculo(x,y,radio){//        -------- CON ESTA FUNCION DISEÑO 
     pincel.stroke();
 }
 function mostrarGuiones(){//        -------- CON ESTA FUNCION LEO LA PALABRA A ADIVINAR Y EN BASE A LA CANTIDAD DE LETRAS, CREO GUIONES --------
-    alert(nuevaPalabra);
+    nuevaPalabra = nuevaPalabra.toUpperCase();
+    alert("Ahora en mayusculas" + nuevaPalabra)
     if(nuevaPalabra == null){
         palabraRandom = Math.floor(Math.random()*palabras.length);
         palabraElegida = palabras[palabraRandom];
@@ -323,10 +325,19 @@ function validarnuevaPalabra(){//        -------- CON ESTA FUNCION VALIDO LA NUE
     }
 }
 function agregarPalabra(){ //        -------- CON ESTA FUNCION EL USUARIO PUEDE AGREGAR LA PALABRA QUE DESEE Y COMENZAR EL JUEGO --------
-    nuevaPalabra = document.getElementById("nuevodato").value;
+    palabraAgregada = document.getElementById("nuevodato").value;
+    palabraAgregada = palabraAgregada.toUpperCase();
+    if(isLetter(palabraAgregada)){
+        nuevaPalabra = palabraAgregada;
+    }else{
+        alert("La palabra ingresada solo debe contener letras");
+        nuevaPalabra = null;
+    } 
     document.getElementById("nuevodato").value = "";
 }
-
+function isLetter(str) {
+  return str.length === 1 && str.match(/[A-Z]/i);
+}
 function reiniciar (){
     crearTablero();
     letrasGuardadas = [];
