@@ -51,7 +51,6 @@ function disenharCirculo(x,y,radio){//        -------- CON ESTA FUNCION DISEÑO 
     pincel.stroke();
 }
 function mostrarGuiones(){//        -------- CON ESTA FUNCION LEO LA PALABRA A ADIVINAR Y EN BASE A LA CANTIDAD DE LETRAS, CREO GUIONES --------
-    nuevaPalabra = nuevaPalabra.toUpperCase();
     if(nuevaPalabra == null){
         palabraRandom = Math.floor(Math.random()*palabras.length);
         palabraElegida = palabras[palabraRandom];
@@ -327,12 +326,24 @@ function validarnuevaPalabra(){//        -------- CON ESTA FUNCION VALIDO LA NUE
 function agregarPalabra(){ //        -------- CON ESTA FUNCION EL USUARIO PUEDE AGREGAR LA PALABRA QUE DESEE Y COMENZAR EL JUEGO --------
     palabraAgregada = document.getElementById("nuevodato").value;
     nuevaPalabra = palabraAgregada.toUpperCase();
-    
+
+    const nuevoarray = nuevaPalabra.split('');
+    nuevoarray.forEach((element) => {
+        if(!(isLetter(element))){
+            alert("CARACTER ERRONEO. SOLO INGRESE UNA PALABRA EN MAYÚSCULA.");
+            nuevaPalabra = null;
+        }
+        else{
+            console.log("ok!!!");
+        }
+    })
+
+    // nuevaPalabra = nuevaPalabra.replace(/[^A-Za-z0-9]/g, ' ');
     ///FALTA VALIDACION DE PALABRA EVITANDO NUMEROS O CARACTERES ESPECIALES
     document.getElementById("nuevodato").value = "";
 }
 function isLetter(str) {
-  return str.length != 1 && str.match(/[a-z]/i);
+  return str.length === 1 && str.match(/[A-Z]/i);
 }
 function reiniciar (){
     crearTablero();
