@@ -31,18 +31,23 @@ var letrasGuardadas = [];
 var palabraAgregada;
 
 if(iniciarjuego == 0){//        -------- CON ESTA CONDICIONAL NOS ASEGURAMOS DE PRESIONAR UNA SOLA VEZ EL INICIO DEL JUEGO --------
-    document.addEventListener("keyup", validarnuevaPalabra);
+    if(screen.width > 768){
+        document.addEventListener("keyup", validarnuevaPalabra);
+    }
+    
 }
 function crearTablero(){//        -------- ESTA FUNCION INICIALIZA NUESTRO TABLERO CON LOS GUIONES DE LA PALABRA A ADIVINAR --------
     iniciarjuego = 1;
-     pantalla = document.querySelector("canvas");
-     pincel = pantalla.getContext("2d");
+    pantalla = document.querySelector("canvas");
+    pincel = pantalla.getContext("2d");
     pincel.fillStyle = "orange";
-    // pincel.globalAlpha = 0.5; TRANSPARENCIA ***COrregir el fondo***
+    // pincel.globalAlpha = 0.5; TRANSPARENCIA ***Corregir el fondo***
     pincel.fillRect(0,50,1200,800);
     mostrarGuiones();
     subtitulo();
-    document.addEventListener("keyup", teclaPresionada);
+    if(screen.width > 768){
+        document.addEventListener("keyup", teclaPresionada);
+    }
 }
 function disenharCirculo(x,y,radio){//        -------- CON ESTA FUNCION DISEÑO LA CABEZA DEL MUÑECO Y LA POSICIONO EN LAS COORDENADAS DESEADAS --------
     pincel.fillStyle= "black";
@@ -244,20 +249,21 @@ function dibujarLetra(tecla){   //        -------- CON ESTA FUNCION DIBUJO LA LE
 }
 function detectarLetra(tecla){//        -------- ESTA FUNCION SIRVE DE VALIDACION PARA QUE EL USUARIO SOLO PUEDA JUGAR SI COLOCO LETRAS MAYUSCULAS --------
     var detectado;
-    for(var z = 0; z<letrasminuscula.length;z++){
-        if(tecla == letrasminuscula[z]){   
-                detectado = 1;//TECLA MINUSCULA
-        }else if(tecla == letrasminuscula[z].toUpperCase()){     
-                if(letraRepetida(tecla)){
-                    detectado = 5;//TECLA MAYUSCULA REPETIDA
-                }else{
-                    detectado = 2;// --- OK !!! 
-                }    
-        } else if(true != isNaN(tecla)){           
-                detectado = 3; // ES UN NUMERO
-        } else if(tecla == caracterEspecial[z]){
-                detectado = 4; // ES UN CARACTER ESPECIAL
-        }       
+        for(var z = 0; z<letrasminuscula.length;z++){
+            if(tecla == letrasminuscula[z]){   
+                    detectado = 1;//TECLA MINUSCULA
+            }else if(tecla == letrasminuscula[z].toUpperCase()){     
+                    if(letraRepetida(tecla)){
+                        detectado = 5;//TECLA MAYUSCULA REPETIDA
+                    }else{
+                        detectado = 2;// --- OK !!! 
+                    }    
+            } else if(true != isNaN(tecla)){           
+                    detectado = 3; // ES UN NUMERO
+            } else if(tecla == caracterEspecial[z]){
+                    detectado = 4; // ES UN CARACTER ESPECIAL
+            }    
+    
 }
 return detectado;
 }
@@ -329,23 +335,20 @@ function agregarPalabra(){ //        -------- CON ESTA FUNCION EL USUARIO PUEDE 
     palabraAgregada = document.getElementById("nuevodato").value;
     nuevaPalabra = palabraAgregada.toUpperCase();
     const nuevoarray = nuevaPalabra.split('');
-    // nuevoarray.forEach((element) => {
-    //     if(!(isLetter(element))){
-    //         alert("CARACTER ERRONEO. SOLO INGRESE UNA PALABRA EN MAYÚSCULA.");
-    //         nuevaPalabra = null;
-    //     }
-    //     else{
-    //         console.log("ok!!!");
-    //     }
-    // })
     for(var i = 0; i<nuevoarray.length; i++){
         if(!(isLetter(nuevoarray[i]))){
-            alert("SÓLO INGRESE UNA PALABRA EN MAYÚSCULA SIN CARÁCTERES ESPECIALES.");
+            alert("Sólo debe ingresar una palabra.");
             nuevaPalabra = null;
             break;
         }
     }
-    alert("La palabra ingresada es: " + nuevaPalabra);
+    if(nuevaPalabra.length === 0){
+        nuevaPalabra = null;
+        alert("Debe ingresar una palabra o Iniciar el Juego.")
+    }
+    if(nuevaPalabra != null){
+        alert("La palabra ingresada es: " + nuevaPalabra);
+    }
     document.getElementById("nuevodato").value = "";
 }
 function isLetter(str) {
