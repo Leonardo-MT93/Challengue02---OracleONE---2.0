@@ -220,7 +220,9 @@ function botonPresionada(letra){//        -------- CON ESTA FUNCION DETECTO QUE 
         }else{
             dibujarletraAcertada(boton);
             intentosacertados++;
+            console.log(juegoperdido)
             if(intentosacertados == aciertosMax && juegoperdido == 0){
+                
                 pincel.font = "bold 85px DynaPuff"
                 pincel.strokeStyle = "darkgreen";
                 pincel.strokeText("GANASTE!!! FELICIDADES!!",posicionX-50,posicionY +300);
@@ -326,20 +328,24 @@ function validarnuevaPalabra(){//        -------- CON ESTA FUNCION VALIDO LA NUE
 function agregarPalabra(){ //        -------- CON ESTA FUNCION EL USUARIO PUEDE AGREGAR LA PALABRA QUE DESEE Y COMENZAR EL JUEGO --------
     palabraAgregada = document.getElementById("nuevodato").value;
     nuevaPalabra = palabraAgregada.toUpperCase();
-
     const nuevoarray = nuevaPalabra.split('');
-    nuevoarray.forEach((element) => {
-        if(!(isLetter(element))){
-            alert("CARACTER ERRONEO. SOLO INGRESE UNA PALABRA EN MAYÚSCULA.");
+    // nuevoarray.forEach((element) => {
+    //     if(!(isLetter(element))){
+    //         alert("CARACTER ERRONEO. SOLO INGRESE UNA PALABRA EN MAYÚSCULA.");
+    //         nuevaPalabra = null;
+    //     }
+    //     else{
+    //         console.log("ok!!!");
+    //     }
+    // })
+    for(var i = 0; i<nuevoarray.length; i++){
+        if(!(isLetter(nuevoarray[i]))){
+            alert("SÓLO INGRESE UNA PALABRA EN MAYÚSCULA SIN CARÁCTERES ESPECIALES.");
             nuevaPalabra = null;
+            break;
         }
-        else{
-            console.log("ok!!!");
-        }
-    })
-
-    // nuevaPalabra = nuevaPalabra.replace(/[^A-Za-z0-9]/g, ' ');
-    ///FALTA VALIDACION DE PALABRA EVITANDO NUMEROS O CARACTERES ESPECIALES
+    }
+    alert("La palabra ingresada es: " + nuevaPalabra);
     document.getElementById("nuevodato").value = "";
 }
 function isLetter(str) {
@@ -352,6 +358,7 @@ function reiniciar (){
     intentosacertados = 0;
     posicionX = 100;
     posicionY = 500;
+    juegoperdido = 0;
 }
 function volverInicio (){
     letrasGuardadas = [];
